@@ -332,9 +332,7 @@ def is_session_modified(session):
     .. seealso:: :func:`is_versioned`
     .. seealso:: :func:`versioned_objects`
     """
-    return any(
-        is_modified_or_deleted(obj) for obj in versioned_objects(session)
-    )
+    return len(session.new) > 0 or len(session.deleted) > 0 or len(session.dirty) > 0
 
 
 def count_versions(obj):
